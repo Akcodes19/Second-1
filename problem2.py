@@ -1,48 +1,36 @@
-import math
 import os
-import random
-import re
 import sys
-# Complete the countApplesAndOranges function below.
-def countApplesAndOranges(s, t, a, b, apples, oranges):
-    acount = 0
-    bcount = 0
-    for i in range(len(apples)):
-        temp = a+apples[i]
-        if(temp in range(s,t+1)):
-            acount+=1
-    for i in range(len(oranges)):
-        temp = b+oranges[i]
-        if(temp in range(s,t+1)):
-            bcount+=1
-    print (acount)
-    print (bcount)
 
-        
-
-
+#
+# Complete the timeConversion function below.
+#
+def timeConversion(str1):
+    if str1[-2:] == "AM" and str1[:2] == "12": 
+        return "00" + str1[2:-2] 
+          
+    # remove the AM     
+    elif str1[-2:] == "AM": 
+        return str1[:-2] 
+      
+    # Checking if last two elements of time 
+    # is PM and first two elements are 12    
+    elif str1[-2:] == "PM" and str1[:2] == "12": 
+        return str1[:-2] 
+          
+    else: 
+          
+        # add 12 to hours and remove PM 
+        return str(int(str1[:2]) + 12) + str1[2:8]
+    
 
 if __name__ == '__main__':
-    st = input().split()
+    f = open(os.environ['OUTPUT_PATH'], 'w')
 
-    s = int(st[0])
+    s = input()
 
-    t = int(st[1])
+    result = timeConversion(s)
 
-    ab = input().split()
+    f.write(result + '\n')
 
-    a = int(ab[0])
+    f.close()
 
-    b = int(ab[1])
-
-    mn = input().split()
-
-    m = int(mn[0])
-
-    n = int(mn[1])
-
-    apples = list(map(int, input().rstrip().split()))
-
-    oranges = list(map(int, input().rstrip().split()))
-
-    countApplesAndOranges(s, t, a, b, apples, oranges)
